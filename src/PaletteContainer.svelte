@@ -2,10 +2,23 @@
   export let show = false;
 </script>
 
+<div class="modal-mask" class:hidden={!show}>
+  <div class="modal-wrapper">
+    <div class="modal-container">
+      <div class="search-box">
+        <slot name="search" />
+      </div>
+      <div>
+        <slot name="items" />
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
   .modal-container {
     max-width: 400px;
-    margin-top: 0px;
+    margin-top: 150px;
     margin-left: auto;
     margin-right: auto;
     padding: 0px;
@@ -46,16 +59,3 @@
   color: white;
 } */
 </style>
-
-<div class="modal-mask" class:hidden={!show}>
-  <div class="modal-wrapper">
-    <div class="modal-container">
-      <div class="search-box">
-        <slot name="search" />
-      </div>
-      <div>
-        <slot name="items" />
-      </div>
-    </div>
-  </div>
-</div>

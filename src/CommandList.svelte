@@ -19,7 +19,9 @@
     if (!listEl) {
       return;
     }
-    const listItemEl: HTMLDivElement | null = listEl.querySelector(".items-list .selected");
+    const listItemEl: HTMLDivElement | null = listEl.querySelector(
+      ".items-list .selected"
+    );
     if (!listItemEl) {
       return;
     }
@@ -27,15 +29,19 @@
     selectedIndexLast = selectedIndex;
     const isPressingUpArrow = !isPressingDownArrow;
 
-    const viewTop = listEl.scrollTop + 36;
+    const itemHeight = 28;
+    const fromTop = 190; // Margin + searchbar height
+    const viewTop = listEl.scrollTop + itemHeight;
     const viewBottom = listEl.scrollTop + listEl.clientHeight;
-    const itemTop = listItemEl.offsetTop - 8;
-    const viewTopIdealPressingDown = itemTop - listEl.clientHeight;
-    const viewTopIdealPressingUp = itemTop - 36;
-    const isWithinView = itemTop <= viewBottom && itemTop >= viewTop;
+    const itemTop = listItemEl.offsetTop;
+    const viewTopIdealPressingDown =
+      itemTop - listEl.clientHeight - fromTop + itemHeight
+    const viewTopIdealPressingUp = itemTop - itemHeight - fromTop;
+    const isWithinView =
+      itemTop - fromTop <= viewBottom && itemTop - fromTop >= viewTop;
 
     if (isWithinView) {
-      return
+      return;
     }
 
     if (isPressingDownArrow) {
@@ -44,7 +50,6 @@
     if (isPressingUpArrow) {
       listEl.scrollTop = viewTopIdealPressingUp;
     }
-
   }
 
   $: {
@@ -53,6 +58,26 @@
   }
 </script>
 
+<div class="items-list" bind:this={listEl}>
+  {#if !items.length}
+    <p class="no-matches">No matching commands...</p>
+  {/if}
+  {#each items as item, index}
+    <p
+      class="item"
+      class:selected={index == selectedIndex}
+      on:mousedown={(e) => clickedIndex(e, index)}
+    >
+      <span>{item.name}</span>
+      {#if !!item.shortcut}
+        <kyb>{item.shortcut}</kyb>
+      {:else}
+        <span />
+      {/if}
+    </p>
+  {/each}
+</div>
+
 <style>
   .item {
     display: flex;
@@ -60,7 +85,7 @@
     justify-content: space-between;
     margin: 0px;
     padding: 0px 7px;
-    height: 36px;
+    height: 28px;
   }
   .item:hover {
     cursor: pointer;
@@ -81,22 +106,3 @@
     padding: 0px 7px;
   }
 </style>
-
-<div class="items-list" bind:this={listEl}>
-  {#if !items.length} 
-    <p class="no-matches">No matching commands...</p>
-  {/if}
-  {#each items as item, index}
-    <p
-      class="item"
-      class:selected={index == selectedIndex}
-      on:mousedown={e => clickedIndex(e, index)}>
-      <span>{item.name}</span>
-      {#if !!item.shortcut}
-        <kyb>{item.shortcut}</kyb>
-      {:else}
-        <span />
-      {/if}
-    </p>
-  {/each}
-</div>
