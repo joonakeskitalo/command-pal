@@ -3230,9 +3230,9 @@ merge2@^1.3.0:
   resolved "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-"metalsmith-start@github:rstacruz/metalsmith-start#e88a7cd":
+metalsmith-start@rstacruz/metalsmith-start#e88a7cd:
   version "2.0.1"
-  resolved "git+ssh://git@github.com/rstacruz/metalsmith-start.git#e88a7cdbb20aac1db176c121b429008073d8e9eb"
+  resolved "https://codeload.github.com/rstacruz/metalsmith-start/tar.gz/e88a7cdbb20aac1db176c121b429008073d8e9eb"
   dependencies:
     chalk "^2.4.1"
     chokidar "^2.0.4"
