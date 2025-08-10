@@ -55,7 +55,4 @@
   .search-box {
     padding: 7px;
   }
-  /* .search:focus {
-  color: white;
-} */
 </style>

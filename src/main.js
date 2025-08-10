@@ -3,7 +3,9 @@ import pubsub from "micro-pubsub";
 
 class CommandPal {
   constructor(options) {
-    if (options.debugOutput) { console.log("CommandPal", { options });}
+    if (options.debugOutput) {
+      console.log("CommandPal", { options });
+    }
     this.options = options || {};
     this.ps = pubsub.create();
   }
@@ -12,11 +14,12 @@ class CommandPal {
     this.app = new App({
       target: document.body,
       props: {
-        hotkey: this.options.hotkey || 'ctrl+space',
+        hotkey: this.options.hotkey || "ctrl+space",
         hotkeysGlobal: this.options.hotkeysGlobal || false,
         inputData: this.options.commands || [],
         paletteId: this.options.id || "CommandPal",
-        placeholderText: this.options.placeholder || "What are you looking for?",
+        placeholderText:
+          this.options.placeholder || "What are you looking for?",
         hotkeysGlobal: this.options.hotkeysGlobal || false,
         hideButton: this.options.hideButton || false,
       },
@@ -42,7 +45,7 @@ class CommandPal {
   }
 
   destroy() {
-    this.app.$destroy()
+    this.app.$destroy();
   }
 }
 

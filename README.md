@@ -3,10 +3,12 @@
 <div align="center">
 
 <!-- [START badges] -->
-[![NPM Version](https://img.shields.io/npm/v/command-pal.svg)](https://www.npmjs.com/package/command-pal) 
-[![License](https://img.shields.io/npm/l/command-pal.svg)](https://github.com/benwinding/command-pal/blob/master/LICENSE) 
-[![Downloads/week](https://img.shields.io/npm/dm/command-pal.svg)](https://www.npmjs.com/package/command-pal) 
+
+[![NPM Version](https://img.shields.io/npm/v/command-pal.svg)](https://www.npmjs.com/package/command-pal)
+[![License](https://img.shields.io/npm/l/command-pal.svg)](https://github.com/benwinding/command-pal/blob/master/LICENSE)
+[![Downloads/week](https://img.shields.io/npm/dm/command-pal.svg)](https://www.npmjs.com/package/command-pal)
 [![Github Issues](https://img.shields.io/github/issues/benwinding/command-pal.svg)](https://github.com/benwinding/command-pal)
+
 <!-- [END badges] -->
 
 </div>
@@ -27,16 +29,16 @@
 ## Benefit's of Command Palettes
 
 - **Ease of use**
-	- Simply 1 keyboard shortcut to remember
-	- Fuzzy search allows you to find commands easily
+  - Simply 1 keyboard shortcut to remember
+  - Fuzzy search allows you to find commands easily
 - **Speed**
-	- Keyboard makes it fast to access any command/function
-	- Fuzzy search allows for quick ordering of commands
-	- Efficient to find a commands that you used once a long time ago
+  - Keyboard makes it fast to access any command/function
+  - Fuzzy search allows for quick ordering of commands
+  - Efficient to find a commands that you used once a long time ago
 - **Discoverability**
-	- You can scroll down the entire list of commands
-	- Find commands by simply searching the Command palette
-	- Tips and functions can be given to you as you type
+  - You can scroll down the entire list of commands
+  - Find commands by simply searching the Command palette
+  - Tips and functions can be given to you as you type
 
 ## Features
 
@@ -71,7 +73,7 @@ Or use the script tag
 
 ### Usage - Simple
 
-``` js
+```js
 const c = new CommandPal({
   hotkey: "ctrl+space",
   commands: [
@@ -87,7 +89,7 @@ const c = new CommandPal({
     {
       name: "Goto Profile",
       shortcut: "ctrl+4",
-      handler: () => window.location.hash = "profile",
+      handler: () => (window.location.hash = "profile"),
     },
   ],
 });
@@ -96,7 +98,7 @@ c.start();
 
 ### Usage - Advanced
 
-``` js
+```js
 const c = new CommandPal({
   hotkey: "ctrl+space",
   placeholder: "Custom placeholder text...",
@@ -106,17 +108,17 @@ const c = new CommandPal({
       children: [
         {
           name: "English",
-          handler: () => alert("Changing to English")
+          handler: () => alert("Changing to English"),
         },
         {
           name: "Spanglish",
-          handler: () => alert("Changing to Spanglish")
-        }
-      ]
+          handler: () => alert("Changing to Spanglish"),
+        },
+      ],
     },
     {
       name: "Goto About",
-      handler: () => window.location.hash = "about",
+      handler: () => (window.location.hash = "about"),
     },
   ],
 });
@@ -126,41 +128,51 @@ c.start();
 ## API
 
 ### CommandPal instance
-``` js
+
+```js
 const c = new CommandPal({
-  hotkey: "ctrl+space",  // Launcher shortcut
-  hotkeysGlobal: true,       // Makes shortcut keys work in any <textarea>, <input> or <select>
+  hotkey: "ctrl+space", // Launcher shortcut
+  hotkeysGlobal: true, // Makes shortcut keys work in any <textarea>, <input> or <select>
   id: "CommandPal", // adds unique ID to aid in targeting with CSS
   placeholder: "Custom placeholder text...", //  Changes placeholder text of input
   debugOuput: false, // if true report debugging info to console
   hideButton: false, // if true, do not generate mobile button
   commands: [
     // Commands go here
-  ]
+  ],
 });
 // Start the instance
-c.start()
+c.start();
 // Destroy the instance
-c.destroy()
+c.destroy();
 ```
 
 ### Subscribe to events
+
 There's a few events that can be subscribed to during command-pal's execution.
 
-``` js
+```js
 // When a command is executed
-c.subscribe("exec", (e) => { console.log("exec", { e }); });
+c.subscribe("exec", (e) => {
+  console.log("exec", { e });
+});
 // On TextChanged
-c.subscribe("textChanged", (e) => { console.log("textChanged", { e }); });
+c.subscribe("textChanged", (e) => {
+  console.log("textChanged", { e });
+});
 // When a command palette is opened
-c.subscribe("opened", (e) => { console.log("opened", { e }); });
+c.subscribe("opened", (e) => {
+  console.log("opened", { e });
+});
 // When a command palette is closed
-c.subscribe("closed", (e) => { console.log("closed", { e }); });
+c.subscribe("closed", (e) => {
+  console.log("closed", { e });
+});
 ```
 
 ### Command Item
 
-``` js
+```js
 {
   // Required name of command (displayed)
   name: "Open Messages",
@@ -181,7 +193,7 @@ c.subscribe("closed", (e) => { console.log("closed", { e }); });
 
 Note: Child commands cannot have shortcuts.
 
-``` js
+```js
 {
   // Required name of command (displayed)
   name: "Open Messages",
@@ -198,13 +210,13 @@ Note: Child commands cannot have shortcuts.
 
 The command list is an observed array, which means you can modify it even after it's instantiated. The following snippet shows how commands can be dynamically added during runtime.
 
-``` js
+```js
 const commands = [
   {
     name: "Add Command to List",
     handler: () => {
       commands.push({
-        name: 'New Command',
+        name: "New Command",
         handler: () => {
           // Do something
         },
@@ -224,14 +236,22 @@ c.start();
 The styles used by command-pal are included in the package. However you can override the default CSS using the following.
 
 ```css
-  /* mobile button */
-  #CommandPal .mobile-button  { top: 30px; }
-  /* modal background */
-  #CommandPal .modal-mask { background-color: rgb(0,128,200,0.75); }
-  /* item background */
-  #CommandPal [slot=items] { background-color: yellow;}
-  /* item text */
-  #CommandPal .item { color:black; }
+/* mobile button */
+#CommandPal .mobile-button {
+  top: 30px;
+}
+/* modal background */
+#CommandPal .modal-mask {
+  background-color: rgb(0, 128, 200, 0.75);
+}
+/* item background */
+#CommandPal [slot="items"] {
+  background-color: yellow;
+}
+/* item text */
+#CommandPal .item {
+  color: black;
+}
 ```
 
 You can also assign a custom `id` to the CommandPal instance.
@@ -243,8 +263,11 @@ You can also assign a custom `id` to the CommandPal instance.
 Which allows you to style a specific instance.
 
 ```css
-  /* mobile button for CommandPal with id='mypal' */
-  #mypal .mobile-button  { top: 30px; bottom: auto;}
+/* mobile button for CommandPal with id='mypal' */
+#mypal .mobile-button {
+  top: 30px;
+  bottom: auto;
+}
 ```
 
 ## Local Development
@@ -254,6 +277,7 @@ To develop on `command-pal` simply clone, install and run
 ```
 npm run dev
 ```
+
 Then the following link:
 
 - http://localhost:5005/cp-advanced/local-dev.html
@@ -265,17 +289,19 @@ closes. This makes inspecting the palette using the browser's DevTools
 difficult, as switching to DevTools causes the focus to be lost. It is
 possible to stop the palette from closing when focus is lost.
 
-``` js
+```js
 // Disable palette from closing during testing
 window.commandPalIgnoreBlur = true;
 // Re-enable
 window.commandPalIgnoreBlur = false;
 ```
+
 To close the palette. focus/select the search input and press the escape `ESC` key.
 
 Have a go, PR's and issues always welcome.
 
 ## Prior Art
+
 Many applications have implemented this before, here's a few. My favourite implementation is the VScode, which is the main influence for this project.
 
 **Editors**

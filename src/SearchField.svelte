@@ -9,10 +9,7 @@
 
   let inputValue;
 
-  const getUUID = () =>
-    Math.random()
-      .toString(32)
-      .slice(2);
+  const getUUID = () => Math.random().toString(32).slice(2);
   const inputName = getUUID();
 
   function onBlur() {
@@ -41,7 +38,7 @@
   }
 
   async function onTextChanged(e) {
-    await asyncTimeout(10)
+    await asyncTimeout(10);
     dispatch("textChange", inputValue);
   }
 
@@ -53,6 +50,22 @@
     }
   }
 </script>
+
+<input
+  class="search"
+  bind:this={inputEl}
+  bind:value={inputValue}
+  id={inputName}
+  name={inputName}
+  data-id="cp-SearchField"
+  on:blur={onFieldBlur}
+  on:keydown={onKeyDown}
+  on:input={onTextChanged}
+  autocomplete="no"
+  autocapitalize="none"
+  type="text"
+  placeholder={placeholderText}
+/>
 
 <style>
   .search {
@@ -71,18 +84,3 @@
     opacity: 1; /* Firefox */
   }
 </style>
-
-<input
-  class="search"
-  bind:this={inputEl}
-  bind:value={inputValue}
-  id={inputName}
-  name={inputName}
-  data-id="cp-SearchField"
-  on:blur={onFieldBlur}
-  on:keydown={onKeyDown}
-  on:input={onTextChanged}
-  autocomplete="no"
-  autocapitalize="none"
-  type="text"
-  placeholder={placeholderText} />

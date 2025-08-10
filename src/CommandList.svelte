@@ -35,7 +35,7 @@
     const viewBottom = listEl.scrollTop + listEl.clientHeight;
     const itemTop = listItemEl.offsetTop;
     const viewTopIdealPressingDown =
-      itemTop - listEl.clientHeight - fromTop + itemHeight
+      itemTop - listEl.clientHeight - fromTop + itemHeight;
     const viewTopIdealPressingUp = itemTop - itemHeight - fromTop;
     const isWithinView =
       itemTop - fromTop <= viewBottom && itemTop - fromTop >= viewTop;

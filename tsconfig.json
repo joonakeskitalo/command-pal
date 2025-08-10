@@ -9,26 +9,12 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "svelte",
-    ],
+    "types": ["svelte"],
     "paths": {
-      "svelte": [
-        "./node_modules/svelte/types/index.d.ts"
-      ]
+      "svelte": ["./node_modules/svelte/types/index.d.ts"]
     },
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ]
+    "lib": ["dom", "dom.iterable", "esnext"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.svelte"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.svelte"],
+  "exclude": ["node_modules"]
 }

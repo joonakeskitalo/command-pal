@@ -42,7 +42,14 @@
       <hr />
       <h5><kbd>Ctrl</kbd> + <kbd>Space</kbd></h5>
       <p>Or</p>
-      <p class="is-flex">Click the <img style="margin-bottom: -5px;" src="https://i.imgur.com/rLU7EJN.png" /> icon on the bottom left </p>
+      <p class="is-flex">
+        Click the
+        <img
+          style="margin-bottom: -5px"
+          src="https://i.imgur.com/rLU7EJN.png"
+        />
+        icon on the bottom left
+      </p>
     </center>
     <h2>Subscribed Output</h2>
     <pre id="output">try it out...</pre>
@@ -52,49 +59,52 @@
     </details>
 
     <!-- head -->
-  <div id="cp-head">
-    <script src="https://cdn.jsdelivr.net/npm/command-pal@0.2.8"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/command-pal@0.2.8/public/theme-dark.css">
-  </div>
+    <div id="cp-head">
+      <script src="https://cdn.jsdelivr.net/npm/command-pal@0.2.8"></script>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/command-pal@0.2.8/public/theme-dark.css"
+      />
+    </div>
     <!-- body -->
     <div id="cp-body">
-    <script>
-      const c = new CommandPal({
-        hotkey: "ctrl+space",
-        commands: [
-          {
-            name: "Goto Profile",
-            handler: () => (window.location.hash = "profile"),
-            shortcut: "ctrl+9",
-          },
-          {
-            name: "Send Message",
-            handler: () => alert("Send Message"),
-            shortcut: "ctrl+6",
-          },
-          {
-            name: "Goto About",
-            handler: () => (window.location.hash = "about"),
-            shortcut: "ctrl+7",
-          },
-          {
-            name: "Search Contacts",
-            handler: () => alert("Searching contacts..."),
-          },
-        ],
-      });
-      c.start();
-      c.subscribe("exec", (e) => {
-        console.log("exec", { e });
-        document.getElementById("output").innerText += "\n" + e.name;
-      });
-      c.subscribe("textChanged", (e) => {
-        console.log("textChanged", { e });
-      });
-      c.subscribe("opened", (e) => console.log("opened", { e }));
-      c.subscribe("closed", (e) => console.log("closed", { e }));
-    </script>
-  </div>
+      <script>
+        const c = new CommandPal({
+          hotkey: "ctrl+space",
+          commands: [
+            {
+              name: "Goto Profile",
+              handler: () => (window.location.hash = "profile"),
+              shortcut: "ctrl+9",
+            },
+            {
+              name: "Send Message",
+              handler: () => alert("Send Message"),
+              shortcut: "ctrl+6",
+            },
+            {
+              name: "Goto About",
+              handler: () => (window.location.hash = "about"),
+              shortcut: "ctrl+7",
+            },
+            {
+              name: "Search Contacts",
+              handler: () => alert("Searching contacts..."),
+            },
+          ],
+        });
+        c.start();
+        c.subscribe("exec", (e) => {
+          console.log("exec", { e });
+          document.getElementById("output").innerText += "\n" + e.name;
+        });
+        c.subscribe("textChanged", (e) => {
+          console.log("textChanged", { e });
+        });
+        c.subscribe("opened", (e) => console.log("opened", { e }));
+        c.subscribe("closed", (e) => console.log("closed", { e }));
+      </script>
+    </div>
 
     <script>
       const exampleHead = document.getElementById("cp-head").innerHTML;
@@ -103,7 +113,7 @@
       const exampleDoc = `<html>
   <head>${exampleHead}</head>
   <body>${exampleCode}</body>
-</html>`
+</html>`;
 
       const highlighted = hljs.highlightAuto(exampleDoc);
       console.log({ highlighted });

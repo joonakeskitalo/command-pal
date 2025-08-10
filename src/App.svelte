@@ -9,7 +9,7 @@
     asyncTimeout,
     setMainShortCut,
     setAllShortCuts,
-    initShortCuts
+    initShortCuts,
   } from "./shortcuts";
   const dispatch = createEventDispatcher();
 
@@ -17,13 +17,13 @@
   export let inputData = [];
   export let hotkeysGlobal: any;
   export let placeholderText: string;
-  export let hideButton: boolean;;
+  export let hideButton: boolean;
   export let paletteId: string;
 
   const optionsFuse = {
     isCaseSensitive: false,
     shouldSort: true,
-    keys: ["name", "description"]
+    keys: ["name", "description"],
   };
 
   let showModal = false;
@@ -41,7 +41,7 @@
     initShortCuts(hotkeysGlobal);
     setMainShortCut(hotkey, async () => {
       if (showModal) {
-      	onClosed()
+        onClosed();
       } else {
         focusedElement = document.activeElement;
         selectionStart = focusedElement.selectionStart;
@@ -51,12 +51,12 @@
         dispatch("opened");
       }
     });
-    setAllShortCuts(inputData, async command => {
-      focusedElement = document.activeElement
+    setAllShortCuts(inputData, async (command) => {
+      focusedElement = document.activeElement;
       showModal = true;
       dispatch("opened");
       await asyncTimeout(200);
-      selectedIndex = inputData.findIndex(i => i.name === command.name);
+      selectedIndex = inputData.findIndex((i) => i.name === command.name);
       await asyncTimeout(100);
       onHandleCommand(command);
     });
@@ -129,7 +129,7 @@
       itemsFiltered = items;
     } else {
       const fuseResult = fuse.search(text);
-      itemsFiltered = fuseResult.map(i => i.item);
+      itemsFiltered = fuseResult.map((i) => i.item);
     }
   }
 
@@ -142,8 +142,8 @@
     selectedIndex = 0;
     setItems(inputData);
     showModal = false;
-    if ( ! focusedElement ) {
-      console.error("focusedElement not set")
+    if (!focusedElement) {
+      console.error("focusedElement not set");
     } else {
       focusedElement.focus();
       if (selectionStart && selectionEnd) {
@@ -167,34 +167,36 @@
     // as having event magically defined scares me.
     let event = e.detail;
     if (event.relatedTarget && event.relatedTarget.focus) {
-       focusedElement = event.relatedTarget;
+      focusedElement = event.relatedTarget;
     } else {
-      focusedElement = document.body
+      focusedElement = document.body;
     }
   }
 </script>
 
 <div id={paletteId}>
   {#if !hideButton}
-    <MobileButton on:click={onMobileClick} on:focus={onMobileFocus}/>
+    <MobileButton on:click={onMobileClick} on:focus={onMobileFocus} />
   {/if}
   <PaletteContainer bind:show={showModal}>
     <div slot="search">
       <SearchField
-        placeholderText={placeholderText}
+        {placeholderText}
         show={showModal}
         bind:inputEl={searchField}
         on:closed={onClosed}
         on:enter={onKeyEnter}
         on:arrowup={onKeyUp}
         on:arrowdown={onKeyDown}
-        on:textChange={onTextChange} />
+        on:textChange={onTextChange}
+      />
     </div>
     <div slot="items">
       <CommandList
         items={itemsFiltered}
         {selectedIndex}
-        on:clickedIndex={onClickedIndex} />
+        on:clickedIndex={onClickedIndex}
+      />
     </div>
   </PaletteContainer>
 </div>
