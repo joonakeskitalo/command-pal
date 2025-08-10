@@ -108,6 +108,7 @@
     if (selectedIndex < minIndex) {
       selectedIndex = maxIndex;
     }
+    dispatch("selectIndexChanged", { command: itemsFiltered[selectedIndex] });
   }
 
   function onKeyDown(e) {
@@ -117,6 +118,7 @@
     if (selectedIndex > maxIndex) {
       selectedIndex = minIndex;
     }
+    dispatch("selectIndexChanged", { command: itemsFiltered[selectedIndex] });
   }
 
   function onTextChange(e) {

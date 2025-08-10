@@ -28,6 +28,7 @@ class CommandPal {
     subTo("opened");
     subTo("closed");
     subTo("textChanged");
+    subTo("selectIndexChanged");
     subTo("exec");
     this.ps.subscribe("exec", (item) => {
       if (item.handler && typeof item.handler === "function") {
